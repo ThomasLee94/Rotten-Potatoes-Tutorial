@@ -4,8 +4,12 @@ var app = express();
 var exphbs =  require("express-handlebars");
 
 var reviews = [
-    {title: "Great Review"},
-    {title: "Next Review"}
+    {   movieTitle: "The Great Gatsby",
+        title: "Great Review"
+    },
+    {   movieTitle: "The Shining",
+        title: "Next Review"
+    }
 ]
 //Root rooute
 // app.get("/", function(req, res){
