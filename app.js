@@ -3,8 +3,19 @@ var app = express();
 
 var exphbs =  require("express-handlebars");
 
+var reviews = [
+    {title: "Great Review"},
+    {title: "Next Review"}
+]
+//Root rooute
+// app.get("/", function(req, res){
+//     res.render("home", {msg: "Hello World!"});
+//     console.log(res);
+// })
+
+//Index route
 app.get("/", function(req, res){
-    res.render("home", {msg: "Hello World!"});
+    res.render("reviews-index", {reviews: reviews});
 })
 
 app.engine("handlebars", exphbs({defaultLayout: "main"}));
