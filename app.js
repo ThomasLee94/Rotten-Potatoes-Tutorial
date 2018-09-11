@@ -1,13 +1,22 @@
+//Initialise Express
 var express = require("express");
 var app = express();
 
+//Initialise Handlebars
 var exphbs = require("express-handlebars");
 
+//Initialise Body Parser
+var bodyParser =  require("body-parser");
+app.use(bodyParser.urlencoded({extended: true}));
+
+//Initialise Mongoose
 var mongoose = require("mongoose");
 mongoose.connect('mongodb://localhost/rotten-potatoes', {useNewUrlParser: true });
 
 var Review = mongoose.model("Review", {
-    title: String
+    title: String,
+    description: String,
+    movieTitle: String
 })
 
 // var reviews = [
@@ -36,6 +45,20 @@ app.get("/", function(req, res){
         .catch(err => {
             console.log(err)
         })
+})
+
+app.get("/reviews/new", (req, res) => {
+    res.render("reviews-new", {});
+})
+
+//Create
+app.post("/reviews", (req, res) => {
+    Review.create(req.body).then((review) => {
+        console.log(review);
+        res.redirect("/");
+    }).catch((err) => {
+        console.log(err.message);
+    })
 })
 
 app.engine("handlebars", exphbs({defaultLayout: "main"}));
