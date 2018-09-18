@@ -1,11 +1,7 @@
 <!-- views/reviews-edit.handlebars-->
 
 <form method="POST" action="/reviews/{{review._id}}?_method=PUT">
-    {{> reviews-form}}
-    <!--Button-->
-    <p>
-        <button type="submit">Save Review</button>
-    </p>
+
     <fieldset>
         <legend>Edit Review</legend>
         <!--TITLE-->
@@ -26,6 +22,9 @@
         <!--Button-->
         <p>
             <button type="submit">Save Review</button>
+        </p>
+        <p>
+            <button type="reset">Cancel</button>
         </p>
     </fieldset>
 </form>

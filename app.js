@@ -1,6 +1,10 @@
 //Initialise Express
 var express = require("express");
+var methodOverride = require("method-override")
 var app = express();
+
+//override with POST having ?_method=DELETE or ?_method=input
+app.use(methodOverride("_method"))
 
 //Initialise Handlebars
 var exphbs = require("express-handlebars");
@@ -8,6 +12,8 @@ var exphbs = require("express-handlebars");
 //Initialise Body Parser
 var bodyParser =  require("body-parser");
 app.use(bodyParser.urlencoded({extended: true}));
+
+
 
 //Initialise Mongoose
 var mongoose = require("mongoose");
@@ -70,6 +76,33 @@ app.get('/reviews/:id', (req, res) => {
   }).catch((err) => {
     console.log(err.message);
   })
+})
+
+app.get('/reviews/:id/:edit', (req, res) => {
+    Review.findById(req.params.id, function(err,review){
+        console.log(review)
+        res.render('reviews-edit', {review: review});
+    })
+})
+
+app.put("/reviews/:id", (req, res) => {
+    Review.findByIdAndUpdate(req.params.id, req.body)
+        .then(review => {
+            res.redirect(`/reviews/${review._id}`)
+        })
+        .catch(err => {
+            console.log(err.message)
+        })
+})
+
+//Delete
+app.delete("/reviews/:id", function(req,res) {
+    console.log("DELETE review")
+    Review.findByIdAndRemove(req.params.id).then((review) => {
+        res.redirect("/");
+    }).catch((err) => {
+        console.log(err.message);
+    })
 })
 
 app.engine("handlebars", exphbs({defaultLayout: "main"}));
