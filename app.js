@@ -16,7 +16,8 @@ mongoose.connect('mongodb://localhost/rotten-potatoes', {useNewUrlParser: true }
 var Review = mongoose.model("Review", {
     title: String,
     description: String,
-    movieTitle: String
+    movieTitle: String,
+    rating: Number
 })
 
 // var reviews = [
@@ -49,6 +50,7 @@ app.get("/", function(req, res){
 
 app.get("/reviews/new", (req, res) => {
     res.render("reviews-new", {});
+
 })
 
 //Create
@@ -56,6 +58,14 @@ app.post("/reviews", (req, res) => {
     Review.create(req.body).then((review) => {
         console.log(review);
         res.redirect("/");
+    }).catch((err) => {
+        console.log(err.message);
+    })
+})
+
+app.get("/reviews/:id", (req, res) => {
+    Review.findById(req.params.id).then((review) => {
+        res.render("reviews-show", {review: review})
     }).catch((err) => {
         console.log(err.message);
     })
