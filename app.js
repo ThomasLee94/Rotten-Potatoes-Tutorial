@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 //Initialise Mongoose
 var mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost/rotten-potatoes', {useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rotten-potatoes');
 
 var Review = mongoose.model("Review", {
     title: String,
@@ -111,6 +111,6 @@ routes(app, Review);
 app.engine("handlebars", exphbs({defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 
-app.listen(3000, ()=> {
+app.listen(process.env.PORT || 3000, ()=> {
     console.log("App listening on port 3000!")
 })
