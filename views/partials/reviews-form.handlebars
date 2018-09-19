@@ -3,18 +3,18 @@
 <fieldset>
     <legend>Edit Review</legend>
     <!--Title-->
-    <p>
+    <div class="form-group">
         <label for="review-title">Title</label><br>
         <input id="review-title" type="text" name"title" value="{{review.title}}"/>
-    </p>
+    </div>
     <!--Movie Title-->
-    <p>
+    <div class="form-group">
         <label for="movie-title">Movie Title</label><br>
         <input id="movie-title" type="text" name="moveTitle" value="{{review.movieTitle}}"/>
-    </p>
+    </div>
     <!--Description-->
-    <p>
+    <div class="form-group">
         <label for="review-description">Description</label><br>
         <textarea id="review-description" name="description" rows="10"/>{{reviews.description}}</textarea>
-    </p>
+    </div>
 </fieldset>

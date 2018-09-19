@@ -105,6 +105,9 @@ app.delete("/reviews/:id", function(req,res) {
     })
 })
 
+var routes = require('./controllers/reviews');
+routes(app, Review);
+
 app.engine("handlebars", exphbs({defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 
