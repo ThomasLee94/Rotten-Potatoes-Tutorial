@@ -1,0 +1,31 @@
+<!-- views/partials/comment-form.handlebars -->
+
+<form>
+    <fieldset>
+        <legend>Add a Comment</legend>
+        <!--Title-->
+        <div class="form-group">
+            <label for="comment-title">Title</label>
+            <input class"form-control"
+                id="comment-title"
+                type="text"
+                name="title"
+                placeholder="Title"/>
+        </div>
+
+        <!--Description-->
+        <div>
+            <label for="comment-content">Description</label><br>
+            <textarea class="form-control"
+                id="comment-content"
+                name="content"
+                rows="10"
+                placeholder="Your comment..."/></textarea>
+        </div>
+    </fieldset>
+
+    <!--Button-->
+    <div class="form-group">
+        <button class="btn btn-primary" type="submit">Save Comment</button>
+    </div>
+</from>
