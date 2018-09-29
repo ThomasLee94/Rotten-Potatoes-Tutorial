@@ -1,5 +1,8 @@
+// Name: Thomas J. Lee
+// Project: Checklist
+
 //Initialise Express
-var express = require("express");
+var express = require("express");//What I need to make a web app.
 var methodOverride = require("method-override")
 var app = express();
 
@@ -7,24 +10,18 @@ var app = express();
 app.use(methodOverride("_method"))
 
 //Initialise Handlebars
-var exphbs = require("express-handlebars");
+var exphbs = require("express-handlebars");//The connection between express and handlebars(res.render)
 
 //Initialise Body Parser
-var bodyParser =  require("body-parser");
+var bodyParser =  require("body-parser");//Data in form post (req.body) makes it usable through express in routes
 app.use(bodyParser.urlencoded({extended: true}));
 
-
+var Comment = require("./models/comments")
+var Review = require("./models/reviews")
 
 //Initialise Mongoose
 var mongoose = require("mongoose");
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rotten-potatoes');
-
-var Review = mongoose.model("Review", {
-    title: String,
-    description: String,
-    movieTitle: String,
-    rating: Number
-})
 
 // var reviews = [
 //     {
@@ -37,7 +34,7 @@ var Review = mongoose.model("Review", {
 //     }
 // ]
 
-//Root rooute
+//Root route
 // app.get("/", function(req, res){
 //     res.render("home", {msg: "Hello World!"});
 //     console.log(res);
@@ -47,7 +44,7 @@ var Review = mongoose.model("Review", {
 app.get("/", function(req, res){
     Review.find()
         .then(reviews => {
-            res.render("reviews-index", {reviews: reviews});
+            res.render("reviews-index", {reviews: reviews});//"reviews-index" is the handlebars template
         })
         .catch(err => {
             console.log(err)
@@ -72,11 +69,24 @@ app.post('/reviews', (req, res) => {
 // SHOW
 app.get('/reviews/:id', (req, res) => {
   Review.findById(req.params.id).then((review) => {
-    res.render('reviews-show', { review: review })
+    res.render('reviews-show', { review: review }) //res.render is similar to a return statement
   }).catch((err) => {
     console.log(err.message);
   })
 })
+
+// app.get('/reviews/:id', (req, res) => {
+//     //Find review
+//     Review.findById(req.params.id).then(review => {
+//       //Fetch its comments
+//       Comment.find({ reviewId: req.params.id}).then(comments => {
+//         res.render('reviews-index', {review: review, comments: comments});
+//       })
+
+//       }).catch(err => {
+//         console.log(err);
+//         });
+//   });
 
 app.get('/reviews/:id/:edit', (req, res) => {
     Review.findById(req.params.id, function(err,review){
@@ -105,8 +115,15 @@ app.delete("/reviews/:id", function(req,res) {
     })
 })
 
-var routes = require('./controllers/reviews');
-routes(app, Review);
+//DELETE
+app.delete('/reviews/comments/:id', function (req, res) {
+  console.log("DELETE comment")
+  Comment.findByIdAndRemove(req.params.id).then((comment) => {
+    res.redirect(`/reviews/${comment.reviewId}`);
+  }).catch((err) => {
+    console.log(err.message);
+  })
+})
 
 app.engine("handlebars", exphbs({defaultLayout: "main"}));
 app.set("view engine", "handlebars");
