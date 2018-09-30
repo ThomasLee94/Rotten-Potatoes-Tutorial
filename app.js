@@ -1,5 +1,5 @@
 // Name: Thomas J. Lee
-// Project: Checklist
+// Project: Rotten Potatoes
 
 //Initialise Express
 var express = require("express");//What I need to make a web app.
@@ -18,6 +18,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 var Comment = require("./models/comments")
 var Review = require("./models/reviews")
+var Movies = require("./controllers/movies")
+Movies(app)
 
 //Initialise Mongoose
 var mongoose = require("mongoose");
