@@ -1,0 +1,24 @@
+<div class="row">
+    {{!-- Movie Thumbnail --}}
+    <div class="col-sm-4">
+        <img class="img-responsive" src="https://image.tmdb.org/t/p/w300/{{movie.poster_path}}"/>
+    </div>
+
+    {{!-- Movie Information --}}
+    <div class="col-sm-8">
+        <h1>{{movie.title}}</h1>
+        <li>Release Date: {{movie.release_date}}</li>
+        <li>Movie runtime: {{movie.runtime}} minutes</li>
+        <li>Movie Revenue: ${{movie.revenue}}</li>
+        <li>Available Languages:</li>
+        {{#each movie.spoken_languages}}
+            <ul>{{this.name}}</ul>
+        {{/each}}
+        <p class="lead">{{movie.overview}}</p>
+    </div>
+
+    {{!-- Movie Trailer --}}
+    <div class="embed-responsive embed-responsive-21by9">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{movie.trailer_youtube_id}}?rel=0"></iframe>
+    </div>
+</div>
