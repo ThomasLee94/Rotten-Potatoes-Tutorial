@@ -1,20 +1,27 @@
 <!--views/partials/reviews-form.handlebars-->
 
 <fieldset>
-    <legend>Edit Review</legend>
     <!--Title-->
     <div class="form-group">
-        <label for="review-title">Title</label><br>
-        <input id="review-title" type="text" name"title" value="{{review.title}}"/>
-    </div>
-    <!--Movie Title-->
-    <div class="form-group">
-        <label for="movie-title">Movie Title</label><br>
-        <input id="movie-title" type="text" name="moveTitle" value="{{review.movieTitle}}"/>
+        <legend>Review for "{{movie.title}}"</legend>
     </div>
     <!--Description-->
     <div class="form-group">
         <label for="review-description">Description</label><br>
-        <textarea id="review-description" name="description" rows="10"/>{{reviews.description}}</textarea>
+        <textarea class="form-control" id="review-description" name="description" rows="10"/>{{reviews.description}}</textarea>
+    </div>
+    <!--Rating-->
+    <div class="form-group">
+        <label for="movie-rating">Movie Rating</label><br>
+        <select class="form-control" id="movie-rating" type="" name="movieRating" value="{{review.movieRating}}" />
+            <option value="N/A">- Not Any -</option>
+            <option value="0">☆☆☆☆☆</option>
+            <option value="1">★☆☆☆☆</option>
+            <option value="2">★★☆☆☆</option>
+            <option value="3">★★★☆☆</option>
+            <option value="4">★★★★☆</option>
+            <option value="5">★★★★★</option>
+        </select>
     </div>
 </fieldset>
+

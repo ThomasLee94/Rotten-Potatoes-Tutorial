@@ -19,7 +19,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 var Comment = require("./models/comments")
 var Review = require("./models/reviews")
 var Movies = require("./controllers/movies")
+var reviews = require("./controllers/reviews")
 Movies(app)
+reviews(app)
 
 //Initialise Mongoose
 var mongoose = require("mongoose");
