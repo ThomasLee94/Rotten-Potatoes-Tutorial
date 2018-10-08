@@ -15,13 +15,14 @@
         <label for="movie-rating">Movie Rating</label><br>
         <select class="form-control" id="movie-rating" type="" name="movieRating" value="{{review.movieRating}}" />
             <option value="N/A">- Not Any -</option>
-            <option value="0">☆☆☆☆☆</option>
-            <option value="1">★☆☆☆☆</option>
-            <option value="2">★★☆☆☆</option>
-            <option value="3">★★★☆☆</option>
-            <option value="4">★★★★☆</option>
-            <option value="5">★★★★★</option>
+            <option value="0">Garbage: ☆☆☆☆☆</option>
+            <option value="1">Bad: ★☆☆☆☆</option>
+            <option value="2">Satisfactory: ★★☆☆☆</option>
+            <option value="3">Good: ★★★☆☆</option>
+            <option value="4">Excellent: ★★★★☆</option>
+            <option value="5">Awe-inspiring: ★★★★★</option>
         </select>
-    </div>
+        <input type="hidden" value="{{movie.id}}" name="movieId">
+     </div>
 </fieldset>
 

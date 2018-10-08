@@ -1,23 +1,14 @@
 <!-- views/reviews-edit.handlebars-->
 
-<form method="POST" action="/reviews/{{review._id}}?_method=PUT">
+<form method="POST" action="/movies/{{review.movieId}}/reviews/{{review._id}}?_method=PUT">
+
 
     <fieldset>
-        <legend>Edit Review</legend>
-        <!--TITLE-->
-        <p>
-            <label for="review">Title</label>
-            <input id="review-title" type="text" name="title" value="{{review.title}}"/>
-        </p>
-        <!--Movie Ttile-->
-        <p>
-            <label for="movie-title">Movie Title</label>
-            <input id="movie-title" type="text" name="movieTitle" value="{{review.movieTitle}}"/>
-        </p>
+        <legend>Edit "{{review.movieTitle}}"</legend>
         <!--Description-->
         <p>
             <label for="review-title">Description</label>
-            <textarea id="review-description" name="description" rows="10"/>{{reviews.description}}</textarea>
+            <textarea id="review-description" name="description" rows="10"/>{{review.description}}</textarea>
         </p>
         <!--Button-->
         <p>
@@ -26,5 +17,6 @@
         <p>
             <button type="reset">Cancel</button>
         </p>
-    </fieldset>
+        <input type="hidden" value="{{review.movieId}}" name="movieId">
+     </fieldset>
 </form>

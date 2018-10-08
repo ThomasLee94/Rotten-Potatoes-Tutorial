@@ -6,7 +6,7 @@
 <div class="row">
     {{!-- Movie Thumbnail --}}
     <div class="col-sm-4">
-        <img class="img-responsive" src="https://image.tmdb.org/t/p/w300/{{movie.poster_path}}"/>
+        <img class="img-responsive" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}"/>
     </div>
 
     {{!-- Movie Information --}}
@@ -26,4 +26,12 @@
     <div class="embed-responsive embed-responsive-21by9">
         <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{movie.trailer_youtube_id}}?rel=0"></iframe>
     </div>
+
+    {{!-- Reviews --}}
+    <h3>Reviews</h3>
+    {{#each reviews}}
+        {{> review this}}
+    {{/each}}
+
+    
 </div>

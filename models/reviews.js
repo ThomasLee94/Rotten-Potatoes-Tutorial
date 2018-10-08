@@ -5,6 +5,7 @@ var ReviewSchema = new mongoose.Schema({
   title: String,
   description: String,
   movieTitle: String,
+  movieId: {type: String, required: true},
   rating: Number
 });
 

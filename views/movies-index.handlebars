@@ -1,4 +1,8 @@
-<h1>Hello Movies</h1>
-{{#each movies}}
-    <li><a href="/movies/{{this.id}}">{{this.title}}</a></li>
-{{/each}}
+<h1>Available Movies</h1>
+<div class="movie-container">
+    {{#each movies}}
+        <a href="/movies/{{this.id}}">{{this.title}}
+            <img class="thumbnail" src="https://image.tmdb.org/t/p/w500{{this.poster_path}}">
+        </a>
+    {{/each}}
+</div>
